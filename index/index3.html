@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transcreve valor monetário</title>
+    <link rel="stylesheet" href="/style/defaultStyle.css">
+</head>
+<body>
+    <form id="form3" name="form3" action="exercicio3.php" method="3" >
+    <table>
+        <tbody>
+            <tr>
+                <td>Valor</td>
+                <td>
+                    <input type="text" id="valor" name="valor" pattern="^(0|[1-9][0-9]*)$" required="">
+                </td>
+            </tr>
+        </tbody>
+    </table>
+        <button type="button" id="button1" onclick="enviar();">Enviar</button>
+    </form>
+        <script>
+
+            function enviar(){
+                console.log("entrou")
+            }
+        </script>
+</body>
+</html>
+
+
+
+
