@@ -1,35 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        input {
+            box-shadow: none;
+            border: 1px solid lightgray;
+            border-radius: 3px;
+            padding: 5px 5px 5px 5px;
+        }
+
+        input:invalid {
+            border-color: red;
+        }
+
+        #mensagem {
+            position: fixed;
+            top: 20px;
+            left: 10%;
+            width: 80%;
+            padding: 5px;
+            display: none;
+            background-color: red;
+        }
+
+        .center {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-left: auto;
+            margin-right: auto;
+
+        }
+    </style>
 </head>
+
 <body>
-    <form id="formA" name="formA" action="exercicioA.php" method="A" >
-    <table>
-        <tbody>
-            <tr>
-                <td>CPF</td>
-                <td>
-                    <input type="text" id="cpf" name="cpf" pattern="^[0-9]{9}-[0-9]{2}$" required="">
-                </td>
-            </tr>
-        </tbody>
-    </table>
-        <button type="button" id="button1" onclick="enviar();">Enviar</button>
+    <form id="form1" name="form1" action="index.php" method="post">
+        <table class="center">
+            <tbody>
+                <tr>
+                    <td>CPF</td>
+                    <td>
+                        <input type="text" id="cpf" name="cpf" pattern="\d{3}\.?\d{3}\.?\d{3}-?\d{2}$" required="">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="center">
+            <button type="button" id="button1" onclick="enviar();">Enviar</button>
+        </div>
     </form>
-        <script>
-            
+    <div id="mensagem">ERRO</div>
+    <script>
+        function mensagem(cor, texto) {
+            var div = document.getElementById("mensagem");
+            div.innerHTML = texto;
+            div.style.display = "block";
+            div.style.backgroundColor = cor;
+            setTimeout(function () {
+                div.style.display = "none";
+            }, 3000);
+        }
 
-            function enviar(){
-                //pensando 
+        function enviar() {
+            var ids = ["cpf"];
+            for (var id of ids) {
+                var input = document.getElementById(id);
+                if (!input.disabled) {
+                    var regexp = new RegExp(input.pattern);
+                    if (!regexp.test(input.value)) {
+                        mensagem("red", "ERRO");
+                        input.value = "";
+                        input.focus();
+                        return;
+                    }
+                }
             }
-        </script>
+            mensagem("green", "OK");
+            document.getElementById("form1").submit();
+        }
+
+    </script>
 </body>
+
 </html>
-
-
-
-
