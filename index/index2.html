@@ -45,7 +45,7 @@
                 <tr>
                     <td>Dias Uúteis</td>
                     <td>
-                        <input type="text" id="dias" name="dias" pattern="" required="">
+                        <input type="text" id="dias" name="dias" pattern="^(0|[1-9][0-9]*)$" required="">
                     </td>
                 </tr>
             </tbody>
@@ -67,7 +67,7 @@
         }
 
         function enviar() {
-            var ids = ["data"];
+            var ids = ["data", "dias"];
             for (var id of ids) {
                 var input = document.getElementById(id);
                 if (!input.disabled) {
@@ -85,8 +85,6 @@
         }
 
     </script>
-
-
 </body>
 
 </html>
