@@ -13,7 +13,7 @@ $invalidos = 0;
 if (!isset($_POST["cpf"])) {
 	$invalidos++;
 } else {
-	if (!preg_match("#\d{3}\.?\d{3}\.?\d{3}-?\d{2}$#", $_POST["cpf"])) {
+	if (!preg_match("#^[0-9]{11}$#", $_POST["cpf"])) {
 		$invalidos++;
 	}
 }
