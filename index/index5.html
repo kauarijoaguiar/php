@@ -30,11 +30,11 @@
 </head>
 <body>
     <form id="formE" name="formE" action="exercicioE.php" method="E" >
-    <table>
+    <table id="table1">
         <tbody>
             <tr>
                 <td>
-                    <input type="text" id="operador1" name="operador1" pattern="^[a-z]+( [a-z]+)*$" required="">
+                    <input type="text" id="operador1" name="operador1" pattern="^[a-z]*$" required="">
                 </td>
                 <td>
                     <select name="select1
@@ -46,13 +46,17 @@
                 </select>
                 </td>
                 <td>
-                    <input type="text" id="operador2" name="operador2" pattern="^[a-z]+( [a-z]+)*$" required="">
+                    <input type="text" id="operador2" name="operador2" pattern="^[a-z]*$" required="">
                 </td>
                 <td>
-                    <button type="button" id="button1" onclick="mais();">+</button>
+                    <input type="button" id="adiciona" value="+" style="width: 20px;" onclick="mais();">
                 </td>
                 <td>
                     <button type="button" id="button1" onclick="resultado();">=</button>
+                </td>
+                <td>
+                    <table id="table2">
+						<tbody></tbody></table>
                 </td>
             </tr>
         </tbody>
@@ -61,15 +65,27 @@
         <script>
 
             function mais(){
-                //pensando
-            }
+    var table = document.getElementById("table2");
+    if (table.rows.length < 8) {
+        table.insertRow(-1).innerHTML = "<td>" +
+                 table.rows.length + "</td><td><input type=\"text\" id=\"operado2" +
+                 table.rows.length + "\" name=\"operador2" + 
+                 table.rows.length + "\" pattern=\"^[a-z]*$\"  required> + </td>"+ "<td>" +
+
+                 table.rows.length + "</td><td><select id=\"select2" + table.rows.length + "\" name=\"select1" + 
+                 table.rows.length + "\" <option value=+\" text1 "+" >\+\</option>\"" +
+                 table.rows.length + "\" <option value=+\" text1 "+" >\+\</option>\"" +
+                 table.rows.length + "\" <option value=+\" text1 "+" >\-\</option>\""+ 
+                 table.rows.length + "\" <option value=+\" text1 "+" >\*\</option>\""+ 
+                 table.rows.length + "\" <option value=+\" text1 "+" >\/\</option>\"  + </td>" ;
+
+}
+}
+            
             function resultado(){
                 //pensando 
             }
         </script>
 </body>
 </html>
-
-
-
 
