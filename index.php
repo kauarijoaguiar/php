@@ -18,19 +18,36 @@ echo "<hr>";
 
 
 function validacao($cpf){
-    $cpf = $_POST['cpf'];
+$cpf = $_POST['cpf'];
 
     $cpf = preg_replace( '/[^0-9]/is', '', $cpf );
-
+     
     if (strlen($cpf) != 11) {
         return false;
     }
-    if (preg_match('/(\d)\1{10}/', $cpf)) {
+
+
+    if (($cpf[0] == $cpf[1]) && ($cpf[1] == $cpf[2]) && ($cpf[2] == $cpf[3]) && ($cpf[3] == $cpf[4]) && ($cpf[4] == $cpf[5]) && ($cpf[5] == $cpf[6]) && ($cpf[6] == $cpf[7]) && ($cpf[8] == $cpf[9]) && ($cpf[9] == $cpf[10])) {
         return false;
     }
 
-    return true;
+    if (($cpf[9] == 1) && ($cpf[10] == 0)){
+        return false;
+    }
 
+    $contador = 9; 
+
+    while ($contador < 11 ) {
+        for ($resto = 0, $posicao = 0; $posicao < $contador; $posicao++) {
+            $resto = $resto + $cpf[$posicao] * (($contador + 1) - $posicao);
+        }
+        $resto = ((10 * $resto) % 11) % 10;
+        if ($cpf[$posicao] != $resto) {
+            return false;
+        }
+        $contador++;
+    }
+	return true;
 }
 
 
