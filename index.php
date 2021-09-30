@@ -21,11 +21,6 @@ function validacao($cpf){
 $cpf = $_POST['cpf'];
 
     $cpf = preg_replace( '/[^0-9]/is', '', $cpf );
-     
-    if (strlen($cpf) != 11) {
-        return false;
-    }
-
 
     if (($cpf[0] == $cpf[1]) && ($cpf[1] == $cpf[2]) && ($cpf[2] == $cpf[3]) && ($cpf[3] == $cpf[4]) && ($cpf[4] == $cpf[5]) && ($cpf[5] == $cpf[6]) && ($cpf[6] == $cpf[7]) && ($cpf[8] == $cpf[9]) && ($cpf[9] == $cpf[10])) {
         return false;

@@ -12,6 +12,9 @@ function mais($data, $dias){
     $data = $_POST['data'];
     $dias = $_POST['dias'];
 
+    $data = implode('-', array_reverse(explode('/', $_POST['data'])));
+
+
     if(date("w",$data == 0)) {
         $soma = date("w", $data) + 1;
     }
@@ -19,19 +22,14 @@ function mais($data, $dias){
         $soma = date("w", $data) + 2;
     }
 
-
-    $feriados = [
-        mktime(0, 0, 0, 1, 1, ""),
-        mktime(0, 0, 0, 4, 21, ""),
-        mktime(0, 0, 0, 5, 1, ""),
-        mktime(0, 0, 0, 9, 7, ""),
-        mktime(0, 0, 0, 10, 12, ""),
-        mktime(0, 0, 0, 11, 2, ""),
-        mktime(0, 0, 0, 11, 15, ""),
-        mktime(0, 0, 0, 12, 25, ""),
-    ];
+    $somadeDU = date('d/m/Y', strtotime("+{$dias} days", strtotime($data)));
+return $somadeDU;
 }
 echo mais($data, $dias);
+
+
+
+
 
 
 ?>
