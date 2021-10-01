@@ -14,17 +14,25 @@ function mais($data, $dias){
 
     $data = implode('-', array_reverse(explode('/', $_POST['data'])));
 
+$contador = 0;
 
-    if(date("w",$data == 0)) {
-        $soma = date("w", $data) + 1;
-    }
-    if(date("w",$data == 6)) {
-        $soma = date("w", $data) + 2;
+while ($contador < $dias){
+
+    if((date("W",$data == 0)) || (date("W",$data == 6))) {
+         $soma = $dias + 1;
     }
 
-    $somadeDU = date('d/m/Y', strtotime("+{$dias} days", strtotime($data)));
+    if((date("W",$data != 0)) && (date("W",$data != 6))) {
+        $somadeDU = date('d/m/Y', strtotime("+{$soma} days", strtotime($data)));
+        $contador++;
+   }
+
+}
+
+    $somadeDU = date('d/m/Y', strtotime("+{$soma} days", strtotime($data)));
 return $somadeDU;
 }
+
 echo mais($data, $dias);
 
 
