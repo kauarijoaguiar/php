@@ -19,7 +19,7 @@
             </tr>
         </tbody>
     </table>
-    <button type="submit" id="button1" >Enviar</button>    
+    <button type="submit" id="button1" onclick="enviar();" >Enviar</button>    
 </form>
     <div id="mensagem">ERRO</div>
         <script>
@@ -47,8 +47,10 @@ function mensagem(cor, texto) {
                     }
                 }
             }
+            if((valor > 0.01) && (valor < 999999999.99)){
             mensagem("green", "OK");
             document.getElementById("form1").submit();
+            }
             }
         </script>
 </body>

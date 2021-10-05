@@ -2,43 +2,6 @@
 <body>
 <?php
 
-/*
-
-
-
-
-
-PEGUEI DA NET 
-PRA TRABALHAR NELE 
-BJS
-
-
-
-
-
-*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 echo "<b>POST</b>";
 echo "<pre>";
 var_dump($_POST);
@@ -47,30 +10,27 @@ echo "<hr>";
 
 $valor = $_POST['valor'];
 if (($valor > 0.01) && ($valor < 999999999.99)){
-
-    
-$dim = extenso($valor);
-
+$chama = extenso($valor);
 $valor = number_format($valor, 2, ",", ".");
 
-echo $dim;
+echo $chama;
+}else{
+    echo "Valor invalido";
 }
 
-function extenso($valor = 0, $maiusculas = false) {
-    if(!$maiusculas){
-
-        $u = ["", "um", "dois", "três", "quatro", "cinco", "seis",  "sete", "oito", "nove"];
-    }else{
-
-        $u = ["", "um", "dois", "TRÊS", "quatro", "cinco", "seis",  "sete", "oito", "nove"];
+function extenso($valor = 0, $tipo = false) {
+    if(!$tipo){
+        $singular = ["centavo", "real", "mil", "milhão", "bilhão", "trilhão", "quatrilhão"];
+        $plural = ["centavos", "reais", "mil", "milhões", "bilhões", "trilhões", "quatrilhões"];
+        $unidade = ["", "um", "dois", "três", "quatro", "cinco", "seis",  "sete", "oito", "nove"];
     }
 
-    $c = ["", "cem", "duzentos", "trezentos", "quatrocentos", "quinhentos", "seiscentos", "setecentos", "oitocentos", "novecentos"];
-    $d = ["", "dez", "vinte", "trinta", "quarenta", "cinquenta", "sessenta", "setenta", "oitenta", "noventa"];
+    $centena = ["", "cem", "duzentos", "trezentos", "quatrocentos", "quinhentos", "seiscentos", "setecentos", "oitocentos", "novecentos"];
+    $dezena = ["", "dez", "vinte", "trinta", "quarenta", "cinquenta", "sessenta", "setenta", "oitenta", "noventa"];
     $d10 = ["dez", "onze", "doze", "treze", "quatorze", "quinze", "dezesseis", "dezesete", "dezoito", "dezenove"];
 
-    $z = 0;
-    $rt = "";
+    $contador = 0;
+    $armazenar = "";
 
     $valor = number_format($valor, 2, ".", ".");
     $inteiro = explode(".", $valor);
@@ -79,30 +39,39 @@ function extenso($valor = 0, $maiusculas = false) {
     $inteiro[$i] = "0".$inteiro[$i];
 
     $fim = count($inteiro) - ($inteiro[count($inteiro)-1] > 0 ? 1 : 2);
-    for ($i=0;$i<count($inteiro);$i++) {
+    $i=0;
+    while($i<count($inteiro)){
         $valor = $inteiro[$i];
-        $rc = (($valor > 100) && ($valor < 200)) ? "cento" : $c[$valor[0]];
-        $rd = ($valor[1] < 2) ? "" : $d[$valor[1]];
-        $ru = ($valor > 0) ? (($valor[1] == 1) ? $d10[$valor[2]] : $u[$valor[2]]) : "";
+        $pegarcentena = (($valor > 100) && ($valor < 200)) ? "cento" : $centena[$valor[0]];
+        $pegardezena = ($valor[1] < 2) ? "" : $dezena[$valor[1]];
+        $pegarunidade = ($valor > 0) ? (($valor[1] == 1) ? $d10[$valor[2]] : $unidade[$valor[2]]) : "";
 
-        $r = $rc.(($rc && ($rd || $ru)) ? " e " : "").$rd.(($rd &&
-        $ru) ? " e " : "").$ru;
+        $r = $pegarcentena.(($pegarcentena && ($pegardezena || $pegarunidade)) ? " e " : "").$pegardezena.(($pegardezena &&
+        $pegarunidade) ? " e " : "").$pegarunidade;
         $t = count($inteiro)-1-$i;
         $r .= $r ? " ".($valor > 1 ? $plural[$t] : $singular[$t]) : "";
-        if ($valor == "000")$z++; elseif ($z > 0) $z--;
-        if (($t==1) && ($z>0) && ($inteiro[0] > 0)) $r .= (($z>1) ? " de " : "").$plural[$t];
-        if ($r) $rt = $rt . ((($i > 0) && ($i <= $fim) && ($inteiro[0] > 0) && ($z < 1)) ? ( ($i < $fim) ? ", " : " e ") : " ") . $r;
+
+        if ($valor == "000"){
+            $contador++;
+        }elseif($contador > 0){
+            $contador--;
+        }
+        if (($t==1) && ($contador>0) && ($inteiro[0] > 0)){
+            $r .= (($contador>1) ? " de " : "").$plural[$t];
+        }
+        if ($r) $armazenar = $armazenar . ((($i > 0) && ($i <= $fim) && ($inteiro[0] > 0) && ($contador < 1)) ? ( ($i < $fim) ? ", " : " e ") : " ") . $r;
+        $i++;
     }
 
-    if(!$maiusculas){
-        $return = $rt ? $rt : "zero";
+    if(!$tipo){
+        $return = $armazenar ? $armazenar : "zero";
     } else {
-        if ($rt) $rt = ereg_replace(" E "," e ",ucwords($rt));
-            $return = ($rt) ? ($rt) : "Zero" ;
+        if ($armazenar) $armazenar = ereg_replace(" E "," e ",ucwords($armazenar));
+            $return = ($armazenar) ? ($armazenar) : "Zero" ;
     }
 
-    if(!$maiusculas){
-        return $rt;
+    if(!$tipo){
+        return $armazenar;
     }else{
         return strtoupper($return);
     }
