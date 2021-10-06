@@ -34,17 +34,38 @@ function extenso($valor = 0, $tipo = false) {
 
     $valor = number_format($valor, 2, ".", ".");
     $inteiro = explode(".", $valor);
-    for($i=0;$i<count($inteiro);$i++)
+    $i=0;
+    for(;$i<count($inteiro);$i++)
     for($ii=strlen($inteiro[$i]);$ii<3;$ii++)
     $inteiro[$i] = "0".$inteiro[$i];
 
-    $fim = count($inteiro) - ($inteiro[count($inteiro)-1] > 0 ? 1 : 2);
+    if(count($inteiro) - ($inteiro[count($inteiro)-1] > 0)){
+        $resp = 1;
+    }else{
+        $resp = 2;
+    }
     $i=0;
     while($i<count($inteiro)){
         $valor = $inteiro[$i];
-        $pegarcentena = (($valor > 100) && ($valor < 200)) ? "cento" : $centena[$valor[0]];
-        $pegardezena = ($valor[1] < 2) ? "" : $dezena[$valor[1]];
-        $pegarunidade = ($valor > 0) ? (($valor[1] == 1) ? $d10[$valor[2]] : $unidade[$valor[2]]) : "";
+        if (($valor > 100) && ($valor < 200)){
+            $pegarcentena ="cento";
+         }else{
+            $pegarcentena = $centena[$valor[0]];
+         }
+         if($valor[1] < 2){
+            $pegardezena = "";
+         }else{
+            $pegardezena =  $dezena[$valor[1]];
+         }
+        if($valor > 0){
+            if($valor[1] == 1){ 
+                $pegarunidade = $d10[$valor[2]];
+            }else{ 
+                $pegarunidade = $unidade[$valor[2]];
+            }
+            }else{
+            $pegarunidade="";
+        } 
 
         $r = $pegarcentena.(($pegarcentena && ($pegardezena || $pegarunidade)) ? " e " : "").$pegardezena.(($pegardezena &&
         $pegarunidade) ? " e " : "").$pegarunidade;
@@ -56,20 +77,17 @@ function extenso($valor = 0, $tipo = false) {
         }elseif($contador > 0){
             $contador--;
         }
-        if (($t==1) && ($contador>0) && ($inteiro[0] > 0)){
-            $r .= (($contador>1) ? " de " : "").$plural[$t];
+        if (($t==1) && ($contador>  0) && ($inteiro[0] > 0)){
+                if($contador>1){
+                $r = " de ";
+            } else{
+                $r="";
+            }
+            $r=$plural[$t];
         }
-        if ($r) $armazenar = $armazenar . ((($i > 0) && ($i <= $fim) && ($inteiro[0] > 0) && ($contador < 1)) ? ( ($i < $fim) ? ", " : " e ") : " ") . $r;
+        if ($r) $armazenar = $armazenar . ((($i > 0) && ($i <= $resp) && ($inteiro[0] > 0) && ($contador < 1)) ? ( ($i < $resp) ? ", " : " e ") : " ") . $r;
         $i++;
     }
-
-    if(!$tipo){
-        $return = $armazenar ? $armazenar : "zero";
-    } else {
-        if ($armazenar) $armazenar = ereg_replace(" E "," e ",ucwords($armazenar));
-            $return = ($armazenar) ? ($armazenar) : "Zero" ;
-    }
-
     if(!$tipo){
         return $armazenar;
     }else{
