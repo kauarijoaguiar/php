@@ -2,11 +2,21 @@
 <body>
 <?php
 
+
+
 echo "<b>POST</b>";
 echo "<pre>";
 var_dump($_POST);
 echo "</pre>";
 echo "<hr>";
+
+/*
+for ($valor = 0.01; $valor < 1000000000; $valor += 0.01){
+    echo " "; 
+    echo validar($valor);
+}
+*/
+
 
 $valor = $_POST['valor'];
 if (($valor > 0.01) && ($valor < 999999999.99)){
@@ -18,13 +28,11 @@ echo $chama;
     echo "Valor invalido";
 }
 
-function extenso($valor = 0, $tipo = false) {
-    if(!$tipo){
-        $singular = ["centavo", "real", "mil", "milhão", "bilhão", "trilhão", "quatrilhão"];
-        $plural = ["centavos", "reais", "mil", "milhões", "bilhões", "trilhões", "quatrilhões"];
-        $unidade = ["", "um", "dois", "três", "quatro", "cinco", "seis",  "sete", "oito", "nove"];
-    }
+function extenso($valor) {
 
+    $singular = ["centavo", "real", "mil", "milhão", "bilhão", "trilhão", "quatrilhão"];
+    $plural = ["centavos", "reais", "mil", "milhões", "bilhões", "trilhões", "quatrilhões"];
+    $unidade = ["", "um", "dois", "três", "quatro", "cinco", "seis",  "sete", "oito", "nove"];
     $centena = ["", "cem", "duzentos", "trezentos", "quatrocentos", "quinhentos", "seiscentos", "setecentos", "oitocentos", "novecentos"];
     $dezena = ["", "dez", "vinte", "trinta", "quarenta", "cinquenta", "sessenta", "setenta", "oitenta", "noventa"];
     $d10 = ["dez", "onze", "doze", "treze", "quatorze", "quinze", "dezesseis", "dezesete", "dezoito", "dezenove"];
@@ -34,19 +42,19 @@ function extenso($valor = 0, $tipo = false) {
 
     $valor = number_format($valor, 2, ".", ".");
     $inteiro = explode(".", $valor);
-    $i=0;
-    for(;$i<count($inteiro);$i++)
-    for($ii=strlen($inteiro[$i]);$ii<3;$ii++)
-    $inteiro[$i] = "0".$inteiro[$i];
+    for($contador2=0;$contador2<count($inteiro);$contador2++)
+    for($ii=strlen($inteiro[$contador2]);$ii<3;$ii++)
+    
+    $inteiro[$contador2] = "0".$inteiro[$contador2];
 
-    if(count($inteiro) - ($inteiro[count($inteiro)-1] > 0)){
+    if(count($inteiro) - ($inteiro[count($inteiro)-1]) > 0){
         $resp = 1;
     }else{
         $resp = 2;
     }
-    $i=0;
-    while($i<count($inteiro)){
-        $valor = $inteiro[$i];
+    $contador2=0;
+    while ($contador2<count($inteiro)) {
+        $valor = $inteiro[$contador2];
         if (($valor > 100) && ($valor < 200)){
             $pegarcentena ="cento";
          }else{
@@ -67,33 +75,44 @@ function extenso($valor = 0, $tipo = false) {
             $pegarunidade="";
         } 
 
-        $r = $pegarcentena.(($pegarcentena && ($pegardezena || $pegarunidade)) ? " e " : "").$pegardezena.(($pegardezena &&
+        $sla = $pegarcentena.(($pegarcentena && ($pegardezena || $pegarunidade)) ? " e " : "").$pegardezena.(($pegardezena &&
         $pegarunidade) ? " e " : "").$pegarunidade;
-        $t = count($inteiro)-1-$i;
-        $r .= $r ? " ".($valor > 1 ? $plural[$t] : $singular[$t]) : "";
 
+        $tamanho = count($inteiro)-1-$contador2;
+
+        if($sla){
+            if($valor > 1){
+                $sla .= " ".$plural[$tamanho];
+            } else {
+                $sla .= " ".$singular[$tamanho];
+            }
+        }
+        
         if ($valor == "000"){
             $contador++;
         }elseif($contador > 0){
             $contador--;
         }
-        if (($t==1) && ($contador>  0) && ($inteiro[0] > 0)){
+        if (($tamanho==1) && ($contador>  0) && ($inteiro[0] > 0)){
                 if($contador>1){
-                $r = " de ";
+                $sla = " de ";
             } else{
-                $r="";
+                $sla="";
             }
-            $r=$plural[$t];
-        }
-        if ($r) $armazenar = $armazenar . ((($i > 0) && ($i <= $resp) && ($inteiro[0] > 0) && ($contador < 1)) ? ( ($i < $resp) ? ", " : " e ") : " ") . $r;
-        $i++;
+            $sla=$plural[$tamanho];
+        }if ($sla) $armazenar = $armazenar . ((($contador2 > 0) && ($contador2 <= $resp) && ($inteiro[0] > 0) && ($contador < 1)) ? ( ($contador2 < $resp) ? ", " : " e ") : " ") . $sla;
+        $contador2++;
     }
+
     if(!$tipo){
         return $armazenar;
     }else{
         return strtoupper($return);
     }
 }
+
 ?>
 </body>
 </html>
+
+
