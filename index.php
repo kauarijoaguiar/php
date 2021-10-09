@@ -31,10 +31,12 @@ $cpf = $_POST['cpf'];
     }
 
     $contador = 9; 
-
+    $resto = 0;
+    $posicao = 0;
     while ($contador < 11 ) {
-        for ($resto = 0, $posicao = 0; $posicao < $contador; $posicao++) {
+        while ( $posicao < $contador)  {
             $resto = $resto + $cpf[$posicao] * (($contador + 1) - $posicao);
+            $posicao++;
         }
         $resto = ((10 * $resto) % 11) % 10;
         if ($cpf[$posicao] != $resto) {

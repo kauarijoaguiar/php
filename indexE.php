@@ -1,14 +1,14 @@
 <html>
 <body>
 <?php
+
 echo "<b>POST</b>";
 echo "<pre>";
 var_dump($_POST);
 echo "</pre>";
 echo "<hr>";
 
-function romanoParaNumeral($romanoo){
-  $romanos = array(
+$romans = array(
     'M' => 1000,
     'CM' => 900,
     'D' => 500,
@@ -24,14 +24,19 @@ function romanoParaNumeral($romanoo){
     'I' => 1,
 );
 
-$resultado = 0;
+$roman = $_POST['operador'];
+$result = 0;
 
-foreach ($romanos as $key => $value) {
-    while (strpos($romano, $key) === 0) {
-        $resultado += $value;
-        $romano = substr($romano, strlen($key));
+foreach ($romans as $key => $value) {
+    while (strpos($roman, $key) === 0) {
+        $result += $value;
+        $roman = substr($roman, strlen($key));
     }
 }
-  return $resultado;
-}
+echo $result;
 
+
+
+?>
+</body>
+</html>
