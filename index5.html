@@ -34,7 +34,7 @@
         <tbody>
             <tr>
                 <td>
-                    <input type="text" id="operador" name="operador1" pattern="^[a-z]*$" required="">
+                    <input type="text" id="operador" name="operador1" pattern="'^M{0,3}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})$'" required="">
                 </td>
                 <td>
                     <select name="select1
@@ -46,7 +46,7 @@
                 </select>
                 </td>
                 <td>
-                    <input type="text" id="operador" name="operador2" pattern="^[a-z]*$" required="">
+                    <input type="text" id="operador" name="operador2" pattern="'^M{0,3}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})$'" required="">
                 </td>
                 <td>
                     <input type="button" id="adiciona" value="+" style="width: 20px;" onclick="mais();">
@@ -82,7 +82,7 @@
         table.insertRow(-1).innerHTML = "<td>" +
                  table.rows.length + "</td><td><input type=\"text\" id=\"operado2" +
                  table.rows.length + "\" name=\"operador2" + 
-                 table.rows.length + "\" pattern=\"^[a-z]*$\"  required>  </td>"
+                 table.rows.length + "\" pattern=\"'^M{0,3}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})$'\"  required>  </td>"
                 
 }
 
