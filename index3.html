@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,41 +8,39 @@
     <title>Transcreve valor monetário</title>
     <link rel="stylesheet" href="/style/defaultStyle.css">
 </head>
+
 <body>
-    <form id="form3" name="form3" action="indexC.php" method="post" >
-    <table>
-        <tbody>
-            <tr>
-                <td>Valor</td>
-                <td>
-                    <input type="text" id="valor" name="valor" pattern="^(0|[1-9][0-9]*)\.?[0-9]+$" required="">
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <button type="button" name="validar" id="validar" value="Validar tudo" onClick="valida()">Enviar</button>   
-</form>
+    <form id="form3" name="form3" action="indexC.php" method="post">
+        <table>
+            <tbody>
+                <tr>
+                    <td>Valor</td>
+                    <td>
+                        <input type="text" id="valor" name="valor" pattern="^(0|[1-9][0-9]*)\.?[0-9]+$" required="">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <button type="button" name="validar" id="validar" value="Validar tudo" onClick="valida()">Enviar</button>
+    </form>
     <div id="mensagem">ERRO</div>
-        <script>
-        function valida(){
-				if(validatudo(document.getElementById('valor').value)){
-                    document.getElementById("form3").submit();
-                }else{
-					alert("valor invalido");
-			}
-        }
-			
-			function validatudo(valor){
-                if ((valor > 0.01) && (valor < 999999999.99)){
-                    return true;
-                }else{
-                    return false;
-                }
+    <script>
+        function valida() {
+            if (validatudo(document.getElementById('valor').value)) {
+                document.getElementById("form3").submit();
+            } else {
+                alert("valor invalido");
             }
-        </script>
+        }
+
+        function validatudo(valor) {
+            if ((valor > 0.01) && (valor < 999999999.99)) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+    </script>
 </body>
+
 </html>
-
-
-
-

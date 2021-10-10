@@ -65,14 +65,14 @@
         function mais() {
             let linha = document.getElementById("linha");
             linha.insertCell(-1).innerHTML =
-                "<select id=\"select" + linha.children.length + 
+                "<select id=\"select" + linha.children.length +
                 "\" <option value=+\" + " + " >\+\</option>\"" +
                 "\" <option value=+\" + " + " >\+\</option>\"" +
                 "\" <option value=+\" - " + " >\-\</option>\"" +
                 "\" <option value=+\" * " + " >\*\</option>\"" +
                 "\" <option value=+\" / " + " >\/\</option>\"";
             linha.insertCell(-1).innerHTML =
-                "<input type=\"text\" id=\"operador" + linha.children.length+
+                "<input type=\"text\" id=\"operador" + linha.children.length +
                 "\" pattern=\"'^M{0,3}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})$'\"  required> "
             if (linha.children.length >= 20) {
                 let btAdiciona = document.getElementById("btAdiciona");
