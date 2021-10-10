@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Calculadora com números romanos</title>
     <style>
         input {
             box-shadow: none;
@@ -28,69 +29,62 @@
         }
     </style>
 </head>
+
 <body>
-    <form id="form5" name="form5" action="exercicioE.php" method="E" >
-    <table id="table1">
-        <tbody>
-            <tr>
-                <td>
-                    <input type="text" id="operador" name="operador1" pattern="'^M{0,3}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})$'" required="">
-                </td>
-                <td>
-                    <select name="select1
-                    " id="select2">
-                    <option value="text1">+</option>
-                    <option value="text1">-</option>
-                    <option value="text1">*</option>
-                    <option value="text1">/</option>
-                </select>
-                </td>
-                <td>
-                    <input type="text" id="operador" name="operador2" pattern="'^M{0,3}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})$'" required="">
-                </td>
-                <td>
-                    <input type="button" id="adiciona" value="+" style="width: 20px;" onclick="mais();">
-                </td>
-                <td>
-                    <button type="button" id="button1" onclick="resultado();">=</button>
-                </td>
-                <td>
-                    <table id="table2">
-						<tbody></tbody></table>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+    <form id="form5" name="form5" action="exercicioE.php" method="E">
+        <table id="table1" style="display: inline; ">
+            <tbody>
+                <tr id="linha">
+                    <td>
+                        <input type="text" id="operador" name="operador1"
+                            pattern="'^M{0,3}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})$'" required="">
+                    </td>
+                    <td>
+                        <select name="select1
+                    " id="select1">
+                            <option value="text1">+</option>
+                            <option value="text1">-</option>
+                            <option value="text1">*</option>
+                            <option value="text1">/</option>
+                        </select>
+                    </td>
+                    <td>
+                        <input type="text" id="operador" name="operador2"
+                            pattern="'^M{0,3}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})$'" required="">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <input type="button" id="btAdiciona" value="+" style="width: 20px; margin-bottom: 50%;" onclick="mais();">
+        <button type="button" id="resultado" onclick="resultado();">=</button>
+
     </form>
-        <script>
+    <script>
 
 
-            function mais(){
- 
-
-    var table = document.getElementById("table2");
-    if(table.rows.length <= 15){
-                    table.insertRow(-1).innerHTML = "<td>" +
-                 table.rows.length + "</td><td><select id=\"select2" + table.rows.length + "\" name=\"select1" + 
-                 table.rows.length + "\" <option value=+\" text1 "+" >\+\</option>\"" +
-                 table.rows.length + "\" <option value=+\" text1 "+" >\+\</option>\"" +
-                 table.rows.length + "\" <option value=+\" text1 "+" >\-\</option>\""+ 
-                 table.rows.length + "\" <option value=+\" text1 "+" >\*\</option>\""+ 
-                 table.rows.length + "\" <option value=+\" text1 "+" >\/\</option>\"  + </td>" ;
-                 }
-    if (table.rows.length < 16) {
-        table.insertRow(-1).innerHTML = "<td>" +
-                 table.rows.length + "</td><td><input type=\"text\" id=\"operado2" +
-                 table.rows.length + "\" name=\"operador2" + 
-                 table.rows.length + "\" pattern=\"'^M{0,3}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})$'\"  required>  </td>"
-                
-}
-
-}
-            
-            function resultado(){
-                //pensando 
+        function mais() {
+            let linha = document.getElementById("linha");
+            linha.insertCell(-1).innerHTML =
+                "<select id=\"select" + linha.children.length + 
+                "\" <option value=+\" text1 " + " >\+\</option>\"" +
+                "\" <option value=+\" text1 " + " >\+\</option>\"" +
+                "\" <option value=+\" text1 " + " >\-\</option>\"" +
+                "\" <option value=+\" text1 " + " >\*\</option>\"" +
+                "\" <option value=+\" text1 " + " >\/\</option>\"";
+            linha.insertCell(-1).innerHTML =
+                "<input type=\"text\" id=\"operador" + linha.children.length+
+                "\" pattern=\"'^M{0,3}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})$'\"  required> "
+            if (linha.children.length >= 20) {
+                let btAdiciona = document.getElementById("btAdiciona");
+                btAdiciona.hidden = true;
             }
-        </script>
+
+        }
+
+        function resultado() {
+            //pensando 
+        }
+    </script>
 </body>
+
 </html>

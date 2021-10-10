@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Calculadora com números por extenso</title>
     <style>
         input {
             box-shadow: none;
@@ -35,33 +35,37 @@
             <tr>
                 <td>Operador 1</td>
                 <td>
-                    <input type="text" id="primeiroNumero" name="primeiroNumero"  required="">
+                    <input type="text" id="primeiroNumero" name="primeiroNumero" pattern="^[a-z]+( [a-z]+)*$" required="">
                 </td>
             </tr>
             <tr>
                 <td>Operador </td>
                 <td>
-                    <select name="select1
-                    " id="select2" onchange="opecao();">
-                    <option value="text1">+</option>
-                    <option value="text1">-</option>
-                    <option value="text1">*</option>
-                    <option value="text1">/</option>
+                    <select name="operador" id="operador" onchange="opercao();">
+                    <option value="+">+</option>
+                    <option value="-">-</option>
+                    <option value="*">*</option>
+                    <option value="/">/</option>
                 </select>
                 </td>
             </tr>
             <tr>
                 <td>Operador 2</td>
                 <td>
-                    <input type="text" id="operador2" name="operador2" pattern="^[a-z]+( [a-z]+)*$" required="">
+                    <input type="text" id="segundoNumero" name="segundoNumero" pattern="^[a-z]+( [a-z]+)*$" required="">
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td align="left">
+                    <button style="background-color: white; border-radius: 15%;" type="submit" id="button1">=</button>
                 </td>
             </tr>
         </tbody>
     </table>
-    <button type="submit" id="button1" >Enviar</button>
     </form>
         <script>
-            function opecao(){
+            function opercao(){
                 //pensando 
             }
             function resultado(){
