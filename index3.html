@@ -19,38 +19,24 @@
             </tr>
         </tbody>
     </table>
-    <button type="submit" id="button1" onclick="enviar();" >Enviar</button>    
+    <button type="button" name="validar" id="validar" value="Validar tudo" onClick="valida()">Enviar</button>   
 </form>
     <div id="mensagem">ERRO</div>
         <script>
-function mensagem(cor, texto) {
-            var div = document.getElementById("mensagem");
-            div.innerHTML = texto;
-            div.style.display = "block";
-            div.style.backgroundColor = cor;
-            setTimeout(function () {
-                div.style.display = "none";
-            }, 3000);
+        function valida(){
+				if(validatudo(document.getElementById('valor').value)){
+                    document.getElementById("form3").submit();
+                }else{
+					alert("valor invalido");
+			}
         }
-
-        function enviar() {
-            var ids = ["valor"];
-            for (var id of ids) {
-                var input = document.getElementById(id);
-                if (!input.disabled) {
-                    var regexp = new RegExp(input.pattern);
-                    if (!regexp.test(input.value)) {
-                        mensagem("red", "ERRO");
-                        input.value = "";
-                        input.focus();
-                        return;
-                    }
+			
+			function validatudo(valor){
+                if ((valor > 0.01) && (valor < 999999999.99)){
+                    return true;
+                }else{
+                    return false;
                 }
-            }
-            if((valor > 0.01) && (valor < 999999999.99)){
-            mensagem("green", "OK");
-            document.getElementById("form3").submit();
-            }
             }
         </script>
 </body>
