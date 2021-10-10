@@ -42,10 +42,10 @@
                     <td>
                         <select name="select1
                     " id="select1">
-                            <option value="text1">+</option>
-                            <option value="text1">-</option>
-                            <option value="text1">*</option>
-                            <option value="text1">/</option>
+                            <option value="+">+</option>
+                            <option value="-">-</option>
+                            <option value="*">*</option>
+                            <option value="/">/</option>
                         </select>
                     </td>
                     <td>
@@ -66,11 +66,11 @@
             let linha = document.getElementById("linha");
             linha.insertCell(-1).innerHTML =
                 "<select id=\"select" + linha.children.length + 
-                "\" <option value=+\" text1 " + " >\+\</option>\"" +
-                "\" <option value=+\" text1 " + " >\+\</option>\"" +
-                "\" <option value=+\" text1 " + " >\-\</option>\"" +
-                "\" <option value=+\" text1 " + " >\*\</option>\"" +
-                "\" <option value=+\" text1 " + " >\/\</option>\"";
+                "\" <option value=+\" + " + " >\+\</option>\"" +
+                "\" <option value=+\" + " + " >\+\</option>\"" +
+                "\" <option value=+\" - " + " >\-\</option>\"" +
+                "\" <option value=+\" * " + " >\*\</option>\"" +
+                "\" <option value=+\" / " + " >\/\</option>\"";
             linha.insertCell(-1).innerHTML =
                 "<input type=\"text\" id=\"operador" + linha.children.length+
                 "\" pattern=\"'^M{0,3}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})$'\"  required> "
