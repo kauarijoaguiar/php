@@ -38,7 +38,7 @@
                 <tr>
                     <td>Data</td>
                     <td>
-                        <input type="text" id="data" name="data"
+                        <input type="text" id="data" name="data" pattern="^(0?[1-9]|[12][0-9]|3[01])/(0?[1-9]|1[0-2])/(19|2[0-9])[0-9]{2}$"
                             required="">
                     </td>
                 </tr>
@@ -69,7 +69,7 @@
 				if(validatudo(document.getElementById('dias').value)&& data(document.getElementById('data').value)){
                     document.getElementById("form2").submit();
                 }else{
-					alert("pinto");
+					alert("Informação invalida");
 			}
         }
 			
@@ -100,13 +100,12 @@ else if ((mes == 4) || (mes == 6) || (mes == 9) || (mes == 11) && (dia == 31)){
     return false;
 }
 else if (mes == 2){
-    var isleap = ((ano % 4 == 0) && (ano % 100 != 0) || (ano % 400 == 0));
-    if ((dia > 29) || (dia == 29 && !isleap))
+    var sla = ((ano % 4 == 0) && (ano % 100 != 0) || (ano % 400 == 0));
+}if ((dia > 29) || (dia == 29 && !sla)){
         return false;
 }
 return true;
 }
-
     </script>
 </body>
 
