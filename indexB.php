@@ -26,8 +26,8 @@ function mais($data, $dias){
     $somaDias = 1;
 
     $pascoa= easter_date($ano);
-    $diaPascoa = date('j', $pascoa);
-    $mesPascoa = date('m', $pascoa);
+    $dia = date('j', $pascoa);
+    $mes = date('m', $pascoa);
 
     $feriados = array(
         mktime(0, 0, 0, 1, 1, $ano), 
@@ -38,10 +38,10 @@ function mais($data, $dias){
         mktime(0, 0, 0, 11,  2, $ano), 
         mktime(0, 0, 0, 11, 15, $ano), 
         mktime(0, 0, 0, 12, 25, $ano),
-        mktime(0, 0, 0, $mesPascoa, $diaPascoa, $ano),
-        mktime(0, 0, 0, $mesPascoa, $diaPascoa - 47, $ano),
-        mktime(0, 0, 0, $mesPascoa, $diaPascoa - 2, $ano),
-        mktime(0, 0, 0, $mesPascoa, $diaPascoa + 60, $ano),
+        mktime(0, 0, 0, $mes, $dia, $ano),
+        mktime(0, 0, 0, $mes, $dia - 47, $ano),
+        mktime(0, 0, 0, $mes, $dia - 2, $ano),
+        mktime(0, 0, 0, $mes, $dia + 60, $ano),
     );
     while($diasUteis != $dias){
         $data = mktime(0, 0, 0, $mes, $dia + $somaDias, $ano)."<br>";

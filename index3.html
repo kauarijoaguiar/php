@@ -14,7 +14,7 @@
             <tr>
                 <td>Valor</td>
                 <td>
-                    <input type="text" id="valor" name="valor" pattern="^(0|[1-9][0-9]*)\.[0-9]+$" required="">
+                    <input type="text" id="valor" name="valor" pattern="^(0|[1-9][0-9]*)\.?[0-9]+$" required="">
                 </td>
             </tr>
         </tbody>
@@ -49,7 +49,7 @@ function mensagem(cor, texto) {
             }
             if((valor > 0.01) && (valor < 999999999.99)){
             mensagem("green", "OK");
-            document.getElementById("form1").submit();
+            document.getElementById("form3").submit();
             }
             }
         </script>
