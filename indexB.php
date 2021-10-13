@@ -9,8 +9,6 @@ echo "</pre>";
 echo "<hr>";
 
 function mais($data, $dias){
-    $data = $_POST['data'];
-    $dias = $_POST['dias'];
 
     $data = mktime(date("m"),date("d"),date("Y"),
     date($data[3].$data[4]),date($data[0].$data[1]),date($data[6].$data[7].$data[8].$data[9])). "<br>";
@@ -26,8 +24,8 @@ function mais($data, $dias){
     $somaDias = 1;
 
     $pascoa= easter_date($ano);
-    $dia = date('j', $pascoa);
-    $mes = date('m', $pascoa);
+    $diaPascoa = date('j', $pascoa);
+    $mesPascoa = date('m', $pascoa);
 
     $feriados = array(
         mktime(0, 0, 0, 1, 1, $ano), 
@@ -38,10 +36,10 @@ function mais($data, $dias){
         mktime(0, 0, 0, 11,  2, $ano), 
         mktime(0, 0, 0, 11, 15, $ano), 
         mktime(0, 0, 0, 12, 25, $ano),
-        mktime(0, 0, 0, $mes, $dia, $ano),
-        mktime(0, 0, 0, $mes, $dia - 47, $ano),
-        mktime(0, 0, 0, $mes, $dia - 2, $ano),
-        mktime(0, 0, 0, $mes, $dia + 60, $ano),
+        mktime(0, 0, 0, $mesPascoa, $diaPascoa, $ano),
+        mktime(0, 0, 0, $mesPascoa, $diaPascoa - 47, $ano),
+        mktime(0, 0, 0, $mesPascoa, $diaPascoa - 2, $ano),
+        mktime(0, 0, 0, $mesPascoa, $diaPascoa + 60, $ano),
     );
     while($diasUteis != $dias){
         $data = mktime(0, 0, 0, $mes, $dia + $somaDias, $ano)."<br>";
@@ -58,16 +56,9 @@ function mais($data, $dias){
     return date("d/m/Y",$data)."<br>";
 
 }
-$somadeDU = date('d/m/Y', strtotime("+{$soma} days", strtotime($data)));
-echo mais($data, $dias);
+echo mais($_POST['data'],$_POST['dias']);
 
 ?>
 </body>
 </html>
-
-
-
-
-
-
 

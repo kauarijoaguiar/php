@@ -2,13 +2,15 @@
 <body>
 <?php
 
-echo "<b>POST</b>";
-echo "<pre>";
-var_dump($_POST);
-echo "</pre>";
-echo "<hr>";
+echo "<h4>";
+echo "Resultado:";
+echo "</h4>";
+
 
 function romanoParaArabico($romano){
+
+    $romano = preg_split('~([*/+-])~', $romano, 0, PREG_SPLIT_NO_EMPTY | PREG_SPLIT_DELIM_CAPTURE);
+
     $romanos = array(
         'M' => 1000,
         'CM' => 900,
@@ -26,18 +28,55 @@ function romanoParaArabico($romano){
     );
 
     $resultado = 0;
-
-    foreach ($romanos as $chave => $valor) {
-        while (strpos($romano, $chave) === 0) {
-            $resultado += $valor;
-            $romano = substr($roman, strlen($chave));
+    foreach ($romano as &$valorOperacao){
+        if((strrpos($valorOperacao, "+") === false) && 
+            (strrpos($valorOperacao, "-") === false) &&
+            (strrpos($valorOperacao, "*") === false) &&
+            (strrpos($valorOperacao, "/") === false)){
+                $resultado = 0;
+                foreach ($romanos as $chave => $valor) {
+                    while (strpos($valorOperacao, $chave) === 0) {
+                        $resultado += $valor;
+                        $valorOperacao = substr($valorOperacao, strlen($chave));
+                    }
+                }
+                $valorOperacao = $resultado;
         }
     }
-    return  $resultado;
+    return (implode("",$romano));
 
 }
 
+function calculadora($valorString){
 
+    $valoresOperacao = preg_split('~([*/+-])~', $valorString, 0, PREG_SPLIT_NO_EMPTY | PREG_SPLIT_DELIM_CAPTURE);
+    for($contador = 1; $contador < count($valoresOperacao); $contador++ ){
+        
+        switch($valoresOperacao[$contador]){
+            case '*':
+                array_splice($valoresOperacao, $contador - 1, 3, round($valoresOperacao[$contador - 1] * $valoresOperacao[$contador + 1],0,PHP_ROUND_HALF_DOWN));
+                $contador--;
+                break;
+            case '/':
+                array_splice($valoresOperacao, $contador - 1, 3, round($valoresOperacao[$contador - 1] / $valoresOperacao[$contador + 1],0,PHP_ROUND_HALF_DOWN));
+                $contador--;
+                break;
+            case '+':
+                array_splice($valoresOperacao, $contador - 1, 3, round($valoresOperacao[$contador - 1] + $valoresOperacao[$contador + 1],0,PHP_ROUND_HALF_DOWN));
+                $contador--;
+                break;
+            case '-':
+                array_splice($valoresOperacao, $contador - 1, 3, round($valoresOperacao[$contador - 1] - $valoresOperacao[$contador + 1],0,PHP_ROUND_HALF_DOWN));
+                $contador--;
+                break;      
+            default: 
+            break;      
+        }
+    }
+    return current($valoresOperacao);
+}
+
+echo calculadora(romanoParaArabico($_POST['valores']));
 ?>
 </body>
 </html>

@@ -2,20 +2,9 @@
 <body>
 <?php
 
-
-
-echo "<b>POST</b>";
-echo "<pre>";
-var_dump($_POST);
-echo "</pre>";
-echo "<hr>";
-
-/*
-for ($valor = 0.01; $valor < 1000000000; $valor += 0.01){
-    echo " "; 
-    echo validar($valor);
-}
-*/
+echo "<h4>";
+echo "Resultado:";
+echo "</h4>";
 
 
 $valor = $_POST['valor'];

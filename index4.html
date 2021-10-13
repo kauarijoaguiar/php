@@ -43,7 +43,7 @@
                 <tr>
                     <td>Operador </td>
                     <td>
-                        <select name="operador" id="operador" onchange="opercao();">
+                        <select name="operador" id="operador">
                             <option value="+">+</option>
                             <option value="-">-</option>
                             <option value="*">*</option>
@@ -60,7 +60,7 @@
                 <tr>
                     <td></td>
                     <td align="left">
-                        <button style="background-color: white; border-radius: 15%;" type="submit"
+                        <button style="background-color: white; border-radius: 15%;" onClick="validaValor()"
                             id="button1">=</button>
                     </td>
                 </tr>
@@ -68,12 +68,18 @@
         </table>
     </form>
     <script>
-        function opercao() {
-            //pensando 
-        }
-        function resultado() {
-            //pensando 
-        }
+        function validaValor() {
+            let input1 = document.getElementById("primeiroNumero").value;
+            let input2 = document.getElementById("segundoNumero").value;
+            let regex = /[a-zA-Z]+/;   
+            console.log(input2)
+            if(regex.test(input1) && regex.test(input2)){
+                document.getElementById("form4").submit();
+            } else {
+                alert("Existem valores inválidos!");
+            }
+            
+            }
     </script>
 </body>
 

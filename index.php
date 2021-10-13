@@ -1,11 +1,10 @@
 <html>
 <body>
 <?php
-echo "<b>POST</b>";
-echo "<pre>";
-var_dump($_POST);
-echo "</pre>";
-echo "<hr>";
+
+echo "<h4>";
+echo "Resultado:";
+echo "</h4>";
 
 
     if (validacao($cpf) == true) {

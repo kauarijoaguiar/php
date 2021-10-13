@@ -2,31 +2,29 @@
 <body>
 <?php
 
-echo "<b>POST</b>";
-echo "<pre>";
-var_dump($_POST);
-echo "</pre>";
-echo "<hr>";
+echo "<h1>";
+echo "Resultado";
+echo "</h1>";
 
 function calcular($primeiroNumero, $operador, $segundoNumero){
     $primeiroNumero = (int) $primeiroNumero;
     $segundoNumero = (int)  $segundoNumero;
     switch($operador){  
         case '+':
-        return $primeiroNumero+ $segundoNumero;
+        return round($primeiroNumero+ $segundoNumero,0,PHP_ROUND_HALF_DOWN);
 
         break;
 
         case '-':
-        return $primeiroNumero- $segundoNumero;
+        return round($primeiroNumero- $segundoNumero,0,PHP_ROUND_HALF_DOWN);
         break;
 
         case '*':
-        return $primeiroNumero* $segundoNumero;
+        return round($primeiroNumero* $segundoNumero,0,PHP_ROUND_HALF_DOWN);
         break;
 
         case '/':
-        return $primeiroNumero/ $segundoNumero;
+        return round($primeiroNumero/ $segundoNumero,0,PHP_ROUND_HALF_DOWN);
         break;
 
         default:
@@ -35,7 +33,6 @@ function calcular($primeiroNumero, $operador, $segundoNumero){
 }
 
 function converteCardinalParaNumeral($cardinal){
-    // Replace all number words with an equivalent numeric value
     $cardinal = strtr(
         $cardinal,
         array(
