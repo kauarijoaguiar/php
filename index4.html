@@ -60,8 +60,8 @@
                 <tr>
                     <td></td>
                     <td align="left">
-                        <button style="background-color: white; border-radius: 15%;" onClick="validaValor()"
-                            id="button1">=</button>
+                        <input type="button" style="background-color: white; border-radius: 15%;" onClick="validaValor()"
+                            id="button1" value="=">
                     </td>
                 </tr>
             </tbody>
@@ -72,14 +72,15 @@
             let input1 = document.getElementById("primeiroNumero").value;
             let input2 = document.getElementById("segundoNumero").value;
             let regex = /[a-zA-Z]+/;   
-            console.log(input2)
             if(regex.test(input1) && regex.test(input2)){
+                console.log('submeteu');
                 document.getElementById("form4").submit();
             } else {
                 alert("Existem valores inválidos!");
+                console.log('não submeteu');
             }
             
-            }
+        }
     </script>
 </body>
 

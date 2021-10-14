@@ -118,9 +118,9 @@ function converteCardinalParaNumeral($cardinal){
     return $resultado;
 }
 
-echo calcular(converteCardinalParaNumeral($_POST['primeiroNumero']), 
+echo calcular(converteCardinalParaNumeral(strtolower($_POST['primeiroNumero'])), 
     $_POST['operador'], 
-    converteCardinalParaNumeral($_POST['segundoNumero']));
+    converteCardinalParaNumeral(strtolower($_POST['segundoNumero'])));
 
 
 ?>
