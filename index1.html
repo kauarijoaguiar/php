@@ -46,7 +46,7 @@
                 <tr>
                     <td>CPF</td>
                     <td>
-                        <input type="text" id="cpf" name="cpf" pattern="^[0-9]{9}-[0-9]{2}$" required="">
+                        <input type="text" id="cpf" name="cpf" pattern="^[0-9]{9}-[0-9]{2}" required="">
                     </td>
                 </tr>
             </tbody>
@@ -89,19 +89,16 @@
                 return false;
             }
             contador = 9;
-            resto = 0;
-            posicao = 0;
-            while (contador < 11) {
-                while (posicao < contador) {
-                    resto = resto + cpf[posicao] * ((contador + 1) - posicao);
-                    posicao++;
-                }
-                resto = ((10 * resto) % 11) % 10;
-                if (cpf[posicao] != resto) {
-                    return false;
-                }
-                contador++;
-            }
+            while (contador < 11 ) {
+     for (resto = 0, posicao = 0; posicao < contador; posicao++) {
+         resto = resto + cpf[posicao] * ((contador + 1) - posicao);
+     }
+     resto = ((10 * resto) % 11) % 10;
+     if (cpf[posicao] != resto) {
+         return false;
+     }
+     contador++;
+ }
             return true;
         }
 
