@@ -89,7 +89,7 @@ function extenso($valor) {
                 $sla="";
             }
             $sla=$plural[$tamanho];
-        }if ($sla) $armazenar = $armazenar . ((($contador2 > 0) && ($contador2 <= $resp) && ($inteiro[0] > 0) && ($contador < 1)) ? ( ($contador2 < $resp) ? ", " : " e ") : " ") . $sla;
+        }if ($sla) $armazenar = $armazenar . ((($contador2 > 0) && ($contador2 <= $resp) && ($inteiro[0] > 0) && ($contador < 1)) ? ( ($contador2 < $resp) ? " e " : " e ") : " ") . $sla;
         $contador2++;
     }
 
