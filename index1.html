@@ -70,7 +70,9 @@
 
 
         function valida() {
-            if (valida_cpf(document.getElementById('cpf').value)) {
+            let cpf = document.getElementById('cpf').value.replaceAll("-", "").replaceAll(".", "");
+
+            if (valida_cpf(cpf)) {
                 alert('CPF Válido');
                 document.getElementById("form1").submit();
             } else {
@@ -79,7 +81,6 @@
         }
 
         function valida_cpf(cpf) {
-            let cpf = document.getElementById(cpf).value.replaceAll("-", "");
             if (cpf.length < 11) {
                 return false;
             }
