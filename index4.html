@@ -73,11 +73,9 @@
             let input2 = document.getElementById("segundoNumero").value;
             let regex = /[a-zA-Z]+/;   
             if(regex.test(input1) && regex.test(input2)){
-                console.log('submeteu');
                 document.getElementById("form4").submit();
             } else {
                 alert("Existem valores inválidos!");
-                console.log('não submeteu');
             }
             
         }
