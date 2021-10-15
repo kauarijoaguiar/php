@@ -39,7 +39,7 @@ function converteCardinalParaNumeral($cardinal){
             'zero'      => '0',
             'um'       => '1',
             'dois'       => '2',
-            'três'     => '3',
+            'tres'     => '3',
             'quatro'      => '4',
             'cinco'      => '5',
             'seis'       => '6',
@@ -75,10 +75,10 @@ function converteCardinalParaNumeral($cardinal){
             'oitocentos'   => '800',
             'novecentos'   => '900',
             'mil'  => '1000',
-            'milhão'   => '1000000',
-            'milhões'   => '1000000',
-            'bilhão'   => '1000000000',
-            'bilhões'   => '1000000000',
+            'milhao'   => '1000000',
+            'milhoes'   => '1000000',
+            'bilhao'   => '1000000000',
+            'bilhoes'   => '1000000000',
             'e'       => '',
         )
     );
