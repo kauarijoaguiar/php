@@ -71,6 +71,7 @@
 
         function valida() {
             let cpf = document.getElementById('cpf').value.replaceAll("-", "");
+            cpf = cpf.replaceAll(".", "");
 
             if (valida_cpf(cpf)) {
                 alert('CPF Válido');

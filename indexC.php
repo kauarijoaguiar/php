@@ -8,7 +8,7 @@ echo "</h4>";
 
 
 $valor = $_POST['valor'];
-if (($valor > 0.01) && ($valor < 999999999.99)){
+if (($valor >= 0.01) && ($valor <= 999999999.99)){
 $chama = extenso($valor);
 $valor = number_format($valor, 2, ",", ".");
 
